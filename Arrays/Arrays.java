@@ -95,29 +95,120 @@ public class Arrays {
     // }
 
     // Sub Arrays
-    public static void printSubArray(int numbers[]){
-        int tp=0;
-        for (int i = 0; i < numbers.length; i++) {
-            int start=i;
-            for (int j = i; j < numbers.length; j++) {
-                int end=j;
-                for (int k = start; k <=end; k++) {
-                    System.out.print(numbers[k]+" ");
+    // public static void printSubArray(int numbers[]){
+    //     int tp=0;
+    //     for (int i = 0; i < numbers.length; i++) {
+    //         int start=i;
+    //         for (int j = i; j < numbers.length; j++) {
+    //             int end=j;
+    //             for (int k = start; k <=end; k++) {
+    //                 System.out.print(numbers[k]+" ");
+    //             }
+    //             tp++;
+    //             System.out.println();
+    //         }
+    //         System.out.println();
+    //     }
+    //     System.out.println(tp);
+    // }
+
+
+    // public static void maxSubArraySum(int numbers[]){
+    //     int currsum=0;
+    //     int maxsum=Integer.MIN_VALUE;
+    //     int prefix[]=new int [numbers.length];
+    //     prefix[0]=numbers[0];
+
+    //     // calculate prefix array
+    //     for(int i=1;i<prefix.length;i++){
+    //         prefix[i]=prefix[i-1]+numbers[i];
+    //     }
+    //     for (int i = 0; i < numbers.length; i++) {
+    //         int start=i;
+    //         for (int j = i; j < numbers.length; j++) {
+    //             int end=j;
+    //             currsum=start == 0? prefix[end] : prefix[end]-prefix[start-1];
+            
+    //             if (maxsum<currsum) {
+    //                 maxsum=currsum;
+    //             }
+    //         }
+    //     }
+    //     System.out.println("max =" +maxsum);
+    // }
+
+
+    // public static void Kadanes(int numbers[]){
+        
+    
+    
+    // int ms=Integer.MIN_VALUE;
+    // int cs=0;
+    
+    
+    //     for (int i = 0; i < numbers.length; i++) {
+        //         cs=cs+numbers[i];
+        //         if(cs<0){
+            //             cs=0;
+            //         }
+            //         ms=Math.max(cs, ms);
+            //     }
+            //     System.out.println("max="+ms);
+            // }
+            
+            // Trapped rainwater
+            // public static int TrappedRainWater(int height[]){
+            //     int n=height.length;
+            //     // calculate left max boundary -array
+            //     int leftmax[]=new int[n];
+            //     leftmax[0]=height[0];
+            //     for (int i = 1; i < n; i++) {
+            //         leftmax[i]=Math.max(height[i], leftmax[i-1]);
+            //     }
+            //     // calculate right max boundary -array
+            //     int rightmax[]=new int [height.length];
+            //     rightmax[n-1]=height[n-1];
+        
+            //     for (int i = n-2; i >=0; i--) {
+            //         rightmax[i]=Math.max(height[i], rightmax[i+1]);
+            //     }
+            //     int trappedWater=0;
+            //     // loop
+            //     for (int i = 0; i < n; i++) {
+            //         // waterlevel=min(leftmax bound,leftmax bound)
+            //       int  waterlevel=Math.min(leftmax[i],rightmax [i]);
+            //       // trapped water=waterlevel-height[i]
+            //       trappedWater+=waterlevel-height[i];
+            //     }
+            //     return trappedWater;
+        
+            // }
+
+            public static int buyAndSellStocks(int prices[]){
+                int buyPrice= Integer.MAX_VALUE;
+                int maxProfit=0;
+                for (int i = 0; i < prices.length; i++) {
+                    if(buyPrice<prices[i]){  //profit
+                        int profit=prices[i]-buyPrice;   //today's profit
+                        maxProfit=Math.max(maxProfit, profit);
+                    }else{
+                        buyPrice =prices[i];
+                    }
                 }
-                tp++;
-                System.out.println();
+                return maxProfit;
             }
-            System.out.println();
-        }
-        System.out.println(tp);
-    }
-
-
 
 
     public static void main(String[] args) {
-        int numbers[]={2,4,6,8,10};
-          printSubArray(numbers);
+        // trapped
+        int prices[]={7,1,5,3,6,4};
+        System.out.println(buyAndSellStocks(prices));
+
+        // System.out.println(TrappedRainWater(height));
+
+
+        // int numbers[]={-2,-3,4,-1,-2,1,5,-3};
+        //   Kadanes(numbers);
         // Pairs
         // Pair(numbers);
 
