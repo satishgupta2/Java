@@ -3,19 +3,19 @@
 import java.util.Scanner;
 
 public class DArray {
-    // public static boolean search(int matrix[][],int key){
-    //     for (int i = 0; i < matrix.length; i++) {
-    //         for (int j = 0; j < matrix[0].length; j++) {
+    public static boolean search(int matrix[][],int key){
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
 
-    //             if(matrix[i][j] <key){
-    //                 System.out.println("found at cell (" + i + "," + j +") ");
-    //                 return true;
-    //             }
-    //         }
-    //     }
-    //     System.out.println("Key not found");
-    //     return false;
-    // }
+                if(matrix[i][j] <key){
+                    System.out.println("found at cell (" + i + "," + j +") ");
+                    return true;
+                }
+            }
+        }
+        System.out.println("Key not found");
+        return false;
+    }
 
     public static void printSpiral(int matrix[][]){
         int startRow=0;
@@ -59,17 +59,17 @@ public class DArray {
 
 public static int diagonalsum(int matrix[][]){
     int sum=0;
-    // for (int i = 0; i < matrix.length; i++) {
+    for (int i = 0; i < matrix.length; i++) {
 
-    //     for (int j = 0; j < matrix[0].length; j++) {
-    //         if(i == j){
-    //             sum+=matrix[i][j];
-    //         }
-    //         else if(i+j == matrix.length-1){
-    //             sum+=matrix[i][j];
-    //         }
-    //     }
-    // }
+        for (int j = 0; j < matrix[0].length; j++) {
+            if(i == j){
+                sum+=matrix[i][j];
+            }
+            else if(i+j == matrix.length-1){
+                sum+=matrix[i][j];
+            }
+        }
+    }
     
     for (int i = 0; i < matrix.length; i++) {
         // pd
@@ -110,28 +110,28 @@ public static boolean  staircaseSearch(int matrix[][],int key){
                         {32,33,39,50}};
 
                         staircaseSearch(matrix, 49);
-        // printSpiral(matrix);
-        // System.out.println(diagonalsum(matrix));
+        printSpiral(matrix);
+        System.out.println(diagonalsum(matrix));
 
         // int matrix[][]=new int [3][3];
-        // int n=matrix.length,m=matrix[0].length;
+        int n=matrix.length,m=matrix[0].length;
 
 
-        // Scanner sc=new Scanner(System.in);
-        // for (int i = 0; i <n; i++) {
-        //     for (int j = 0; j < m; j++) {
-        //         matrix[i][j]=sc.nextInt();
-        //     }
-        // }
+        Scanner sc=new Scanner(System.in);
+        for (int i = 0; i <n; i++) {
+            for (int j = 0; j < m; j++) {
+                matrix[i][j]=sc.nextInt();
+            }
+        }
 
-        // // output  
-        // for (int i = 0; i < n; i++) {
-        //     for (int j = 0; j < m; j++) {
-        //         System.out.print(matrix[i][j] + "  ");
-        //     }
-        //     System.out.println();
-        // }
+        // output  
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                System.out.print(matrix[i][j] + "  ");
+            }
+            System.out.println();
+        }
 
-        // search(matrix, 9);
+        search(matrix, 9);
     }
 }
