@@ -10,9 +10,15 @@ public class bitwiseO {
             System.out.println("odd number");
         }
     }
+
+    // public static int pdateIthbit(int n ,int i , int newBit){
+    //     if(newBit==0){
+    //         return 
+    //     }
+    // }
     public static void main(String[] args) {
 
-        oddOrEvent(6);
+        // oddOrEvent(6);
 
         // System.out.println(5>>2);
     }
