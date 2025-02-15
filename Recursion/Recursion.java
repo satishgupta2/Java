@@ -66,15 +66,71 @@ public class Recursion {
         }
         return isSorted(arr, i+1);
     }
+
+
+    // first Occurence of a element
+    public static int FirstOcc(int arr[],int key,int i){
+        if (i==arr.length) {
+            return -1;
+        }
+        if(arr[i]==key){
+            return i;
+        }
+        return FirstOcc(arr,key,i+1);
+    }
+
+
+    // last Occurence
+    public static int lastOcc(int arr[],int key,int i){
+        if (i==arr.length) {
+            return -1;
+        }
+        int isFound=lastOcc(arr, key, i+1);
+        if(isFound ==-1 && arr[i]==key){
+            return i;
+        }
+        return isFound;
+    }
+
+
+    //power 
+    public static int power(int x,int n){
+        if (n==0) {
+            return 1;
+        }
+        return x * power(x, n-1);
+    }
+
+
+    // 
+    public static int optimizedpower(int a, int n){ // 0(logn)
+        if (n==0) {
+            return 1;
+        }
+        int halfPower=optimizedpower(a, n/2);
+        int halfPowerSq=halfPower * halfPower;
+
+        // n is odd
+        if(n % 2 !=0){
+            halfPowerSq=a*halfPowerSq;
+        }
+        return halfPowerSq;
+    }
     public static void main(String[] args) {
-        int arr[]={1,3,4,5,2};
+        int a=2;
+        int n=5;
+        int arr[]={1,3,4,5,2,5};
         // int n=6;
         // printDec(n);
         // printInc(n);
         // System.out.println(fact(n));
         // System.out.println(calcsum(n));
         // System.out.println(fib(n));
-        System.out.println(isSorted(arr,0));
+        // System.out.println(isSorted(arr,0));
+        // System.out.println(FirstOcc(arr,5,0));
+        // System.out.println(lastOcc(arr,5,0));
+        // System.out.println(power(4, 5));
+        System.out.println(optimizedpower(a, n));
         
     }
 }
