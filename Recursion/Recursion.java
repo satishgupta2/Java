@@ -102,7 +102,7 @@ public class Recursion {
     }
 
 
-    // 
+    // power 0(log n)
     public static int optimizedpower(int a, int n){ // 0(logn)
         if (n==0) {
             return 1;
@@ -116,10 +116,48 @@ public class Recursion {
         }
         return halfPowerSq;
     }
-    public static void main(String[] args) {
-        int a=2;
-        int n=5;
-        int arr[]={1,3,4,5,2,5};
+
+    // tilling problem
+    public static int tillingProblem(int n){  //2 x n (floor size)
+        // base class
+        if(n==0 || n==1){
+            return 1;
+        }
+
+        // kaam
+        // vertical choice
+         int fnm1=tillingProblem(n-1);
+
+        //  horizontal choice 
+        int fnm2=tillingProblem(n-2);
+
+        int totalways=fnm1+fnm2;
+        return totalways;
+        
+    }
+
+    // removeDuplicates
+    public static void removeDuplicates(String str,int idx,StringBuilder newStr,boolean map[]){
+        // base
+        if (idx== str.length()) {
+            System.out.println(newStr);
+            return;
+        }
+        // kaam
+        char currChar=str.charAt(idx);
+        if(map[currChar-'a'] ==true){
+            // duplicate
+            removeDuplicates(str, idx+1, newStr, map);
+        }else{
+            map[currChar-'a']=true;
+            removeDuplicates(str, idx+1, newStr.append(currChar), map);
+        }
+
+    }    public static void main(String[] args) {
+
+        // int a=2;
+        // int n=5;
+        // int arr[]={1,3,4,5,2,5};
         // int n=6;
         // printDec(n);
         // printInc(n);
@@ -130,7 +168,10 @@ public class Recursion {
         // System.out.println(FirstOcc(arr,5,0));
         // System.out.println(lastOcc(arr,5,0));
         // System.out.println(power(4, 5));
-        System.out.println(optimizedpower(a, n));
+        // System.out.println(optimizedpower(a, n));
+        // System.out.println(tillingProblem(5));
+        String str="appnnacollege";
+        removeDuplicates(str, 0, new StringBuilder(""),new boolean[26]);
         
     }
 }
