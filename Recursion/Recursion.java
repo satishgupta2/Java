@@ -152,8 +152,35 @@ public class Recursion {
             map[currChar-'a']=true;
             removeDuplicates(str, idx+1, newStr.append(currChar), map);
         }
+    }
 
-    }    public static void main(String[] args) {
+
+        // friends Paring p
+        public static int friendsPairing(int n){
+
+            // base case
+            if (n==1 || n==2) {
+                return n;
+            }
+            return friendsPairing(n-1)+(n-1)* friendsPairing(n-2);
+
+        }
+
+
+        // Binary Strings
+        public static void printBinaryString(int n, int lastPlace, String str){
+            // base case
+            if (n==0) {
+                System.out.println(str);
+                return;
+            }
+            // kaam
+            printBinaryString(n-1, 0, str+"0");
+            if (lastPlace ==0) {
+                printBinaryString(n-1, 1, str+"1");
+            }
+        }
+       public static void main(String[] args) {
 
         // int a=2;
         // int n=5;
@@ -170,8 +197,10 @@ public class Recursion {
         // System.out.println(power(4, 5));
         // System.out.println(optimizedpower(a, n));
         // System.out.println(tillingProblem(5));
-        String str="appnnacollege";
-        removeDuplicates(str, 0, new StringBuilder(""),new boolean[26]);
+        // String str="appnnacollege";
+        // removeDuplicates(str, 0, new StringBuilder(""),new boolean[26]);
+        // System.out.println(friendsPairing(3));
+        printBinaryString(3, 0, " ");
         
     }
 }
