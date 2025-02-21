@@ -33,12 +33,44 @@ public class RecursionP {
         return length(str.substring(1))+1;
     }
 
+
+
+    // Q4.substring
+    public static int countSubstrs(String str,int i,int j,int n){
+        if (n==1) {
+            return 1;
+        }
+        if (n<=0) {
+            return 0;
+        }
+
+        int res=countSubstrs(str, i+1, j, n-1)+ countSubstrs(str, i, j-1, n-1)-countSubstrs(str, i+1, j-1, n-2);
+        if (str.charAt(i) == str.charAt(j)) {
+            res++;
+        }
+        return res;
+    }
+
+// Q5 print steps to move
+public  static void towerofHanoi(int n,String src,String helper,String dest){
+    if (n==1) {
+        System.out.println("transfer disk " + n + " from "+ src+ " to " +dest);
+        return;
+    }
+    towerofHanoi(n-1, src, dest,helper);
+    System.out.println(" transfer disk " + n + " from "+ src+ " to " +dest);
+    towerofHanoi(n-1, helper, src,dest);
+}
+
     public static void main(String[] args) {
     //    int arr[]={3,2,4,5,6 ,2,7,2,2};
     //     Incides(arr, 2,0);
     // printDigits(1947);
-    String str="abcd";
-    System.out.println(length(str));
+    // String str="abcab";
+    // int n=str.length();
+    // System.out.println(countSubstrs(str, 0, n-1, n));
+    int n=3;
+    towerofHanoi(n,"A", "B", "C");
 
     }
 }
