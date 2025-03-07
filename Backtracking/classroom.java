@@ -106,7 +106,7 @@ public class classroom {
     printSudoku(sudoku);
    }else{
     System.out.println("solution does not exist");
-   }
+   }    
 
     }
 }
