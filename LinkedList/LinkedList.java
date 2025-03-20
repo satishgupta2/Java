@@ -155,16 +155,109 @@ public class LinkedList {
     public int recSerach(int key){
         return recSerachHelper(head,key);
     }
+
+
+    public void reverse(){ //O(n)
+        Node prev=null; 
+        Node curr=tail=head;
+        Node next;
+        while(curr!=null){
+            next =curr.next;
+            curr.next=prev;
+            prev=curr;
+            curr=next;
+        }
+        head=prev;
+    }
+
+
+    public void deleteNthfromEnd(int n){
+        // calculate 
+        int sz=0;
+        Node temp=head;
+        while(temp!=null){
+            temp=temp.next;
+            sz++;
+        }
+        if (n== sz) {
+            head=head.next;
+            return;
+            
+        }
+
+        // sz-n
+        int i=1;
+        int itofind=sz-n;
+        Node prev=head;
+        while(i<itofind){
+            prev=prev.next;
+            i++;
+        }
+        prev.next=prev.next.next;
+        return;
+    }
+
+
+  
+    //slow fast Approach
+    public Node findMiNode(Node head){
+        Node slow=head;
+        Node fast =head;
+        while(fast!=null && fast.next!=null){
+            slow=slow.next;  //1 step
+            fast=fast.next.next;  //2 step
+        }
+        return slow;
+    }
+
+    public boolean checkPalindrome(){
+        if (head==null || head.next==null) {
+            return true;
+            
+        }
+        //step 1- find mid
+        Node mid=findMiNode(head);
+
+        //step2 - reverse second half
+        Node prev=null;
+        Node curr=mid;
+        Node next;
+        while(curr!=null){
+            next=curr.next;
+            curr.next=prev;
+            prev=curr;
+            curr=next;
+        }
+        Node right=prev;   //right half head
+        Node left =head;   //left half head
+
+        //step3 - compare first half and second half
+        while(right!=null){
+            if (left.data!=right.data) {
+                return false;
+            }
+            left=left.next;
+            right=right.next;
+        }
+        return true;
+    }
     public static void main(String[] args) {
         LinkedList ll = new LinkedList();
-       ll.addFirst(2);
-       ll.addFirst(1);
-       ll.addLast(  4);
-       ll.addLast(5);
-       ll.add(2, 3); //12345
+    //    ll.addFirst(1);
+    //    ll.addFirst(2);
+
+       ll.addLast(  1);
+       ll.addLast(  2);
+       ll.addLast(  2);
+       ll.addLast(1);
+    //    ll.add(2, 3); //12345
          ll.print();
-        System.out.println(ll.recSerach(4));
-        System.out.println(ll.recSerach(10));
+         System.out.println(ll.checkPalindrome());
+        //  ll.reverse();
+        //  ll.deleteNthfromEnd(3);
+            // ll.print();
+        // System.out.println(ll.recSerach(4));
+        // System.out.println(ll.recSerach(10));
 
         //  ll.removeFirst();
         //  System.out.println("After removing first element");
