@@ -2,7 +2,7 @@ package LinkedList;
 
 
 public class LinkedList {
-    public  class Node {
+    public static  class Node {
         int data;
         Node next;
         Node(int data) {
@@ -241,18 +241,79 @@ public class LinkedList {
         }
         return true;
     }
+
+public static boolean iscycle(){
+    Node slow=head;
+    Node fast=head;
+    while (fast!=null && fast.next!=null) {
+        slow=slow.next;
+        fast=fast.next.next;
+        if (slow==fast) {
+            return true;
+            
+        }
+    }
+    return false;
+}
+
+
+public static void removeCycle(){
+    //detect cycle
+    Node slow=head;
+    Node fast=head;
+    boolean isCycle=false;
+    while (fast!=null && fast.next!=null) {
+        slow=slow.next;
+        fast=fast.next.next;
+        if (slow==fast) {
+            isCycle=true;
+            break;
+        }
+    }
+
+    if (isCycle==false) {
+        return;
+        
+    }
+
+
+    //find starting point of cycle
+    slow=head;
+    Node prev=null;
+    while (slow!=fast) {
+        prev=fast;
+        slow=slow.next;
+        fast=fast.next;
+    }
+
+    //remove cycle
+    prev.next=null;
+    
+}
+
+
     public static void main(String[] args) {
-        LinkedList ll = new LinkedList();
+        head=new Node(1);
+        Node temp=new Node(2);
+        head.next=temp;
+        head.next.next=new Node(3); 
+        head.next.next.next=temp  ;
+        // 1-2-3-2
+        System.out.println(iscycle());
+        removeCycle();
+        System.out.println(iscycle());
+        // 1-2-3-1
+        // LinkedList ll = new LinkedList();
     //    ll.addFirst(1);
     //    ll.addFirst(2);
 
-       ll.addLast(  1);
-       ll.addLast(  2);
-       ll.addLast(  2);
-       ll.addLast(1);
+    //    ll.addLast(  1);
+    //    ll.addLast(  2);
+    //    ll.addLast(  2);
+    //    ll.addLast(1);
     //    ll.add(2, 3); //12345
-         ll.print();
-         System.out.println(ll.checkPalindrome());
+        //  ll.print();
+        //  System.out.println(ll.checkPalindrome());
         //  ll.reverse();
         //  ll.deleteNthfromEnd(3);
             // ll.print();
