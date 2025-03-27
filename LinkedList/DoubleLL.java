@@ -30,6 +30,7 @@ public class DoubleLL {
         head=newNode; // make new node as head
     }
 
+    //print
     public void print(){
         Node temp=head;
         while(temp!=null){
@@ -40,7 +41,39 @@ public class DoubleLL {
     }
 
 
-    // remove 
+    // remove -removeLast
+    public int removeFirst(){
+        if (head==null) {
+            System.out.println("List is empty");
+            return Integer.MIN_VALUE;
+        }
+        if (size==1) {
+            int val=head.data;
+            head=tail=null;
+            size--;
+            return val; // return value
+        }
+
+        int val = head.data;
+        head=head.next;
+        head.prev=null;
+        size--;
+        return val;
+    }
+
+    public void reverse(){
+        Node curr = head;
+        Node prev = null;
+        Node next;
+        while(curr!=null){
+            next =curr.next;
+            curr.next=prev;
+            curr.prev=next;
+            prev=curr;
+            curr=next;
+        }
+        head=prev;
+    }
 
     public static void main(String[] args) {
         DoubleLL dll=new DoubleLL();
@@ -49,7 +82,13 @@ public class DoubleLL {
         dll.addFirst(1);
 
         dll.print();
-        System.out.println("Size: "+size);
+        dll.reverse();
+        dll.print();
+        // System.out.println(dll.size);
+        // dll.removeFirst();
+        // dll.print();
+        // System.out.println(dll.size);
+
 
     }
 }
