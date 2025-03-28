@@ -12,27 +12,47 @@ public class Stacks {
     }
 
     // revrese stack
-    public static String revreseStack(String str){
-        Stack <Character> s=new Stack<>();
-        int idx=0;
-        while (idx<str.length()) {
-            s.push(str.charAt(idx));
-            idx++;
+    // public static String revreseStack(String str){
+    //     Stack <Character> s=new Stack<>();
+    //     int idx=0;
+    //     while (idx<str.length()) {
+    //         s.push(str.charAt(idx));
+    //         idx++;
+    //     }
+    //     StringBuilder result=new StringBuilder("");
+    //     while(!s.isEmpty()){
+    //         char ch=s.pop();
+    //         result.append(ch);
+    //     }
+    //     return result.toString();
+    // }
+
+    public static void revreseStack(Stack <Integer> s){
+        if (s.isEmpty()) {
+            return;
         }
-        StringBuilder result=new StringBuilder("");
-        while(!s.isEmpty()){
-            char ch=s.pop();
-            result.append(ch);
-        }
-        return result.toString();
+        int top=s.pop();
+        revreseStack(s);
+        pushAtBottom(s, top);
+
     }
+
+    public static void printStack(Stack <Integer> s){
+        while (!s.isEmpty()) {
+            System.out.println(s.pop());
+        }
+    }
+
     public static void main(String[] args) {
-        String str="Hello World!";
-        System.out.println(revreseStack(str));
-        // Stack <Integer> s = new Stack<>();
-        // s.push(1);  
-        // s.push(2);
-        // s.push(3);
+        // String str="Hello World!";
+        // System.out.println(revreseStack(str));
+        Stack <Integer> s = new Stack<>();
+        s.push(1);  
+        s.push(2);
+        s.push(3);
+
+        revreseStack(s);
+        printStack(s);
 
         // pushAtBottom(s, 4);
         // while (!s.isEmpty()) {
